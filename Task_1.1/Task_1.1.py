@@ -1,21 +1,19 @@
-# Напишите программу, которая принимает на вход цифру, обозначающую день недели, 
-# и проверяет, является ли этот день выходным.
+# Напишите программу для проверки истинности утверждения ¬(X ⋁ Y ⋁ Z) = ¬X ⋀ ¬Y ⋀ ¬Z для всех значений предикат.
 
-def NumInput (inputText):
-    check = False
-    while not check:
-        try:
-            number = int(input(f"{inputText}"))
-            check = True
-        except ValueError:
-            print("Вы ввели неверные данные!")
-    return number
-def NumCheck (num):
-    if 6 <= num <= 7:
-        print("Это выходной день")
-    elif 0 < num < 6:
-        print("Это будни")
-    else:
-        print("Под данным номером дней недели не существует")
-num = NumInput ("Введите число, обозначающее день недели: ")
-NumCheck (num)
+def Predicatum(x):
+    side1 = not (x[0] or x[1] or x[2])
+    side2 = not x[0] and not x[1] and not x[2]
+    result = side1 == side2
+    return result
+def inputNumbers(x):
+    coordinates = ["x", "y", "z"]
+    a = []
+    for i in range(x):
+        a.append(input(f"Введите значение {coordinates [i]}: "))
+    return a
+print (f"Проверим истинность утверждения ¬(X ⋁ Y ⋁ Z) = ¬X ⋀ ¬Y ⋀ ¬Z")
+veracity = inputNumbers(3)
+if Predicatum(veracity) == True:
+    print(f"*Указанное утверждение истинно*")
+else:
+    print(f"*Указанное утверждение ложно*")
